@@ -1,0 +1,20 @@
+
+<table>
+  <tr>
+      <td *ngFor='let tab of tabArray(tabCountOutputDuplicate)' class="storyboard-tab-section">
+        <storyboard-tab></storyboard-tab>
+      </td>
+      <td>
+        <storyboard-tab-add (tabCountOutput)="tabCountOutputParent($event)"></storyboard-tab-add>
+      </td>
+      <td>
+        <button (click)="clearTabs()">Remove Tabs From Local Storage</button>
+      </td>
+    </tr>
+    <tr>
+      <td class="storyboard-page">
+          <storyboard-page></storyboard-page>
+      </td>
+    </tr>
+</table>
+<div>test</div>
