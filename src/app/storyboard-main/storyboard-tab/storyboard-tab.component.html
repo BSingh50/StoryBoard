@@ -1,16 +1,13 @@
 
-<table>
-  <tr>
-      <td class="storyboard-tabs" *ngIf='!enterKeyPressed'>
-          <input type="text" 
-          [(ngModel)]="storyboardTitle"
-          (keydown)="onKeydown($event)" 
-          class="storyboard-tab" 
-          placeholder="storyboard Title...Click Enter to save"/>
-        </td>
-        <td class="storyboard-tabs" *ngIf='enterKeyPressed'>
-          <span (dblclick)="editTab($event)">{{storyboardTitle}}</span>
-        </td>
-  </tr>
-</table>
+<div class="storyboard-tabs" *ngIf='!enterKeyPressed'>
+    <input type="text" 
+    [(ngModel)]="storyboardTitle"
+    (keydown)="onKeydown($event)" 
+    class="storyboard-tab" 
+    placeholder="storyboard Title...Click Enter to save"/>
+</div>
+<div class="storyboard-tabs" *ngIf='enterKeyPressed'>
+  <span (dblclick)="editTab($event)">{{storyboardTitle}}</span>
+</div>
+
 
