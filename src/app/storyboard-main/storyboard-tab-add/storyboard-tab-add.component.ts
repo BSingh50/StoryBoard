@@ -8,9 +8,13 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class StoryboardTabAddComponent implements OnInit {
   @Output() tabCountOutput = new EventEmitter<number>();
+  //@Input() childCurrentSavedTabs: number;
   numberOfTabs: number = 1;
   tabArray = Array;
-  constructor() { }
+  
+  constructor() {
+
+  }
 
   ngOnInit() {
   }
@@ -18,7 +22,7 @@ export class StoryboardTabAddComponent implements OnInit {
 
 
   addTab(){
-    this.tabCountOutput.emit(this.numberOfTabs+=1);
+    this.tabCountOutput.emit(this.numberOfTabs);
     console.log(this.numberOfTabs);
   }
 

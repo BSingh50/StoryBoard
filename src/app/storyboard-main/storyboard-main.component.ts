@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StoryboardTabService } from './storyboard-tab-service';
+import { isNull } from 'util';
 
 
 @Component({
@@ -10,11 +11,20 @@ import { StoryboardTabService } from './storyboard-tab-service';
 export class StoryboardMainComponent implements OnInit {
   _storyBoardTabService: StoryboardTabService;
   tabCountOutputDuplicate: number;
+  currentSavedTabs: number;
   constructor(storyBoardTabService: StoryboardTabService) {
     this._storyBoardTabService = storyBoardTabService;
-    console.log('existing tabs: ', this.tabCountOutputDuplicate);
-    this.tabCountOutputDuplicate = this._storyBoardTabService.getTabValue("Tab");
-    console.log('existing tabs in local storage: ', this._storyBoardTabService.getTabInLocal("Tab"));
+
+    if(this._storyBoardTabService.getTabValue("Tab") == 0 || this._storyBoardTabService.getTabValue("Tab") == null){
+      this.tabCountOutputDuplicate = 1;
+    }
+    else{
+      this.tabCountOutputDuplicate = this._storyBoardTabService.getTabValue("Tab");
+    }
+    this._storyBoardTabService.saveTabInLocal("Tab",this.tabCountOutputDuplicate);
+     
+    console.log('current saved tabs ', this.currentSavedTabs);
+    
   }
 
   ngOnInit() {
@@ -24,9 +34,10 @@ export class StoryboardMainComponent implements OnInit {
   tabArray = Array;
 
   tabCountOutputParent($event){
-    this.tabCountOutputDuplicate = $event;
-    console.log("test", this.tabCountOutputDuplicate);
+    this.tabCountOutputDuplicate = $event + this._storyBoardTabService.getTabValue("Tab");
+    console.log("event ",$event);
     this._storyBoardTabService.saveTabInLocal("Tab",this.tabCountOutputDuplicate);
+    
     
   }
 
